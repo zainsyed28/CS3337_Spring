@@ -14,19 +14,20 @@
 
 {% block content %}
     <h1 align="center"> Display Books Page </h1>
-    <div class = "row" align="center">
-    <table class = "col align-self-center table table-striped">
-        {% for book in books %}
-          <tr>
-          <td>
-             <a href="book_detail/{{ book.id }}"> {{ book.name }} </a>
-          </td>
-          <td>
-             {{ book.web }}
-          </td>
-        </tr>
-    {% endfor %}
-    </table>
+    <div class = "container">
+        <div class = "row align-items-center">
+            <table class = "table table-striped">
+                {% for book in books %}
+                    <tr>
+                      <td>
+                         <a href="book_detail/{{ book.id }}"> {{ book.name }} </a>
+                      </td>
+                      <td>
+                         {{ book.web }}
+                      </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
     </div>
-
 {% endblock content %}
