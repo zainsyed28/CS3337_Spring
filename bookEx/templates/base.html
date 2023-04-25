@@ -33,8 +33,8 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav">
                     {% block sidenav %}
-                    <li class="nav-item m-auto">
-                        <a class="nav-link p-5" href="#"> Menu 1 </a>
+                    <li class="nav-item m-5">
+                        <a class="nav-link m-5" href="#"> Menu 1 </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"> Menu 2 </a>
@@ -42,19 +42,18 @@
                     {% endblock sidenav %}
                 </ul>
 
-                 <span style="float: right;">
-                     <div class="text-right m-2">
-                     {% if user.is_authenticated %}
-                          {{ user.username }}
-                          <a class="button" href="{% url 'logout' %}?next=/">Logout</a>
-                     {% else %}
-                          Not logged in.
-                          <a class="button" href="{% url 'login' %}?next=/">Login</a>
-                     {% endif %}
-                     </div>
-                 </span>
+
                 </div>
             </div>
+             <span style="float: right;">
+             <div class="text-right">
+             {% if user.is_authenticated %}
+                  {{ user.username }} <a class="button" href="{% url 'logout' %}?next=/">Logout</a>
+             {% else %}
+                  Not logged in. <a class="button" href="{% url 'login' %}?next=/">Login</a>
+             {% endif %}
+             </div>
+         </span>
         </nav>
      </div>
 
