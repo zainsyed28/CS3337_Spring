@@ -1,0 +1,71 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+            title x
+        {% endblock title %}
+    </title>
+    {% load static %}
+    <link href="{% static 'main.css' %}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}" >
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</head>
+<body>
+
+     <header id="header">
+         <div>
+             <img src="{% static 'logo.jpg' %}" width="80">
+             <img src="{% static 'banner.jpg' %}" width="700" height="120">
+         </div>
+     </header>
+
+     <div>
+         <nav class="col navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">BookExchange</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    {% block sidenav %}
+                    <li class="nav-item">
+                        <a class="nav-link p-5" href="#"> Menu 1 </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"> Menu 2 </a>
+                    </li>
+                    {% endblock sidenav %}
+                </ul>
+
+                 <span style="float: right;">
+                     <div class="text-right m-2">
+                     {% if user.is_authenticated %}
+                          {{ user.username }}
+                          <a class="button" href="{% url 'logout' %}?next=/">Logout</a>
+                     {% else %}
+                          Not logged in.
+                          <a class="button" href="{% url 'login' %}?next=/">Login</a>
+                     {% endif %}
+                     </div>
+                 </span>
+                </div>
+            </div>
+        </nav>
+     </div>
+
+
+      <div class="container-fluid">
+          {% block content %}
+          <h1> This is Book Exchange System</h1>
+          {% endblock content %}
+      </div>
+      <footer class="mt-auto container-fluid text-center">
+          2023 Spring CS3337 Project
+      </footer>
+</body>
+</html>

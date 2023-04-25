@@ -1,0 +1,59 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+            title x
+        {% endblock title %}
+    </title>
+    <link href="{% static 'main.css' %}" rel="stylesheet" type="text/css">
+</head>
+<body>
+  <div>
+     <header id="header">
+         <div>
+             <img src="{% static 'logo.jpg' %}" width="80">
+         </div>
+
+         <span style="float: right;">
+             {% if user.is_authenticated %}
+                  {{ user.username }}
+                  <a href="{% url 'logout' %}?next=/">Logout</a>
+             {% else %}
+                  Not logged in.
+                  <a href="{% url 'login' %}?next=/">Login</a>
+             {% endif %}
+         </span>
+
+         <div>
+             <img src="{% static 'banner.jpg' %}" width="700" height="120">
+         </div>
+     </header>
+      <aside id="leftsidebar">
+        <nav id="nav">
+            <ul>
+                {% block sidenav %}
+                <li>
+                    Menu 1
+                </li>
+                <li>
+                    Menu 2
+                </li>
+                {% endblock sidenav %}
+            </ul>
+        </nav>
+      </aside>
+      <section id="main">
+          {% block content %}
+          <h1> This is Book Exchange System</h1>
+          {% endblock content %}
+      </section>
+      <footer id="footer">
+          2023 Spring CS3337 Project
+      </footer>
+  </div>
+</body>
+</html>
