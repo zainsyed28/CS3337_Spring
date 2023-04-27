@@ -46,17 +46,24 @@
     <div class ="container col-lg-6 col-md-6" align ="center">Comments:</div>
     <div class="container col-lg-4 col-md-4">
         <table class = "table table-bordered table-light table-striped" align="center" border="2" width="400">
+            <thead>
+                <tr>
+                  <th scope="col">Date</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Comment</th>
+                </tr>
+            </thead>
             {% if comments %}
             {% for comment in comments %}
               <tr>
+                  <td>
+                     {{ comment.publishdate }}
+                  </td>
                   <td>
                       {{ comment.username }}
                   </td>
                   <td>
                      {{ comment.content }}
-                  </td>
-                  <td>
-                     {{ comment.publishdate }}
                   </td>
               </tr>
             {% endfor %}
@@ -71,8 +78,8 @@
     </div>
     <div class="container col-lg-4 col-md-4">
 
-    <h1 align="center"> Add your comment: </h1>
-        <form action="" enctype="multipart/form-data" method="post" novalidate>
+    <h2 align="center"> Add your comment: </h2>
+        <form action="" enctype="multipart/form-data" method="post">
           <table align="center">
               {{ form.as_table }}
               <tr>
