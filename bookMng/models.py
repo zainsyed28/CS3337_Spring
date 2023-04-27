@@ -21,6 +21,7 @@ class Book(models.Model):
     picture = models.FileField(upload_to='bookEx/static/uploads')
     pic_path = models.CharField(max_length=300, editable=False, blank=True)
     username = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
+    favorites = models.ManyToManyField(User, related_name='favorite', default=None, blank=True)
 
     def __str__(self):
         return str(self.id)
@@ -32,7 +33,6 @@ class Comment(models.Model):
     book_origin = models.ForeignKey(Book, on_delete=models.CASCADE)
     username = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
     publishdate = models.DateField(auto_now=True)
-
 
     def __str__(self):
         return str(self.id)

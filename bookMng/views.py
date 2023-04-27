@@ -132,3 +132,14 @@ def about_us(request):
                       'item_list': MainMenu.objects.all(),
                   }
                   )
+
+
+def favorite(request, id):
+    book = Book.objects.get(id=id)
+    if book.favorites.filter(id=request.user.id).exists():
+        book.favorites.remove(request.user)
+    else:
+        book.favorites.add(request.user)
+    return HttpResponseRedirect(
+        request.META['HTTP_REFERER']
+        )

@@ -23,7 +23,7 @@
                   <th scope="col">Name</th>
                   <th scope="col">Link</th>
                   <th scope="col">User</th>
-                  <th scope="col"></th>
+                  <th scope="col">Image</th>
                 </tr>
              </thead>
               <tr>
@@ -37,7 +37,7 @@
                      {{ book.username }}
                   </td>
                   <td>
-                     <img src="{% static book.pic_path %}" height="50"/>
+                     <img src="{% static book.pic_path %}" height="30"/>
                   </td>
               </tr>
          </table>
@@ -79,8 +79,9 @@
         </table>
     </div>
     <div class="container col-lg-4 col-md-4">
-
-    <h2 align="center"> Add your comment: </h2>
+        <a href="{% url 'favorite' book.id %}" class="btn btn-primary">Favorite this book</a>
+    </div>
+    <div class="container col-lg-4 col-md-4">
         <form action="" enctype="multipart/form-data" method="post">
           <table align="center">
               <div class ="mr-5">
@@ -88,11 +89,10 @@
               </div>
               <tr>
                   <td>
-                      <input class="form-control"  type="submit" value="Submit">
+                      <input class="form-control" type="submit" value="Submit">
                   </td>
               </tr>
           </table>
-          {% csrf_token %}
         </form>
     </div>
 {% endblock content %}
