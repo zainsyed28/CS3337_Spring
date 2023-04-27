@@ -43,7 +43,9 @@
          </table>
     </div>
     <br>
-    <div class ="container col-lg-6 col-md-6" align ="center">Comments:</div>
+    <div class ="container col-lg-6 col-md-6" align ="center">
+        <h2>Comments:</h2>
+    </div>
     <div class="container col-lg-4 col-md-4">
         <table class = "table table-bordered table-light table-striped" align="center" border="2" width="400">
             <thead>
@@ -81,9 +83,12 @@
     <h2 align="center"> Add your comment: </h2>
         <form action="" enctype="multipart/form-data" method="post">
           <table align="center">
-              {{ form.as_table }}
+              <div class ="mr-5">
+                  {{ form.as_table }}
+              </div>
               <tr>
                   <td>
+<!--                      <input type="text" class="form-control" placeholder="Add Comments here">-->
                       <input class="form-control"  type="submit" value="Submit">
                   </td>
               </tr>

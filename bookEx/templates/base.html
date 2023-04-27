@@ -19,7 +19,6 @@
      <header id="header">
          <div>
              <img src="{% static 'logo.jpg' %}" width="80">
-             <img src="{% static 'banner.jpg' %}" width="700" height="120">
          </div>
      </header>
 
@@ -42,18 +41,17 @@
                     {% endblock sidenav %}
                 </ul>
 
-
                 </div>
-             </div>
+            </div>
              <span style="float: right;">
-             <div class="text-right">
-             {% if user.is_authenticated %}
-                  {{ user.username }} <a class="btn btn-primary" href="{% url 'logout' %}?next=/">Logout</a>
-             {% else %}
-                  Not logged in. <a class="btn btn-primary" href="{% url 'login' %}?next=/">Login</a>
-             {% endif %}
-             </div>
-         </span>
+                 <div>
+                 {% if user.is_authenticated %}
+                      {{ user.username }} <a class="btn btn-primary" href="{% url 'logout' %}?next=/">Logout</a>
+                 {% else %}
+                      Not logged in. <a class="btn btn-primary" href="{% url 'login' %}?next=/">Login</a>
+                 {% endif %}
+                 </div>
+             </span>
         </nav>
      </div>
 
