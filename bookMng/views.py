@@ -75,13 +75,12 @@ class Register(CreateView):
 def book_detail(request, book_id):
     book = Book.objects.get(id=book_id)
     book.pic_path = book.picture.url[14:]
-    comments = Comments.objects.all().filter(book=book_id)
+    # comments = Comments.objects.all().filter(book=book_id)
     return render(request,
                   'bookMng/book_detail.html',
                   {
                       'item_list': MainMenu.objects.all(),
                       'book': book,
-                      'comments': comments,
                   }
                   )
 

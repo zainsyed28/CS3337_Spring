@@ -16,20 +16,29 @@
 
 {% block content %}
     <h1 align="center"> Book Detail Page </h1>
-    <table align="center" border="2" width="400">
-      <tr>
-          <td>
-             {{ book.name }}
-          </td>
-          <td>
-             {{ book.web }}
-          </td>
-          <td>
-             {{ book.username }}
-          </td>
-          <td>
-             <img src="{% static book.pic_path %}" height="100"/>
-          </td>
-      </tr>
-    </table>
+    <div class="container">
+         <table class = "table table-light table-striped" align="center" border="2" width="400">
+             <thead class="thead thead-dark">
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Link</th>
+                  <th scope="col"></th>
+                </tr>
+             </thead>
+          <tr>
+              <td>
+                 {{ book.name }}
+              </td>
+              <td>
+                 {{ book.web }}
+              </td>
+              <td>
+                 {{ book.username }}
+              </td>
+              <td>
+                 <img src="{% static book.pic_path %}" height="100"/>
+              </td>
+          </tr>
+         </table>
+    </div>
 {% endblock content %}
