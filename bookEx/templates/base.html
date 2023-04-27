@@ -15,56 +15,52 @@
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
 </head>
 <body>
+    <nav class=" col navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-     <header id="header">
-         <div>
-             <img src="{% static 'logo.jpg' %}" width="80">
-         </div>
-     </header>
-
-     <div class="container">
-         <nav class=" col navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="/">BookExchange</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav">
-                    {% block sidenav %}
-                    <li class="nav-item m-5">
-                        <a class="nav-link m-5 mr-3" href="#"> Menu 1 </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link mr-3" href="#"> Menu 2 </a>
-                    </li>
-                    {% endblock sidenav %}
-                </ul>
-
+            <a class="navbar-brand ml-5" href="/">
+                <div>
+                    <img class="float-left" src="{% static 'logo.jpg' %}" height="36">
                 </div>
-            </div>
-             <span style="float: right;">
-                 <div>
-                 {% if user.is_authenticated %}
-                      {{ user.username }} <a class="btn btn-primary" href="{% url 'logout' %}?next=/">Logout</a>
-                 {% else %}
-                      Not logged in. <a class="btn btn-primary" href="{% url 'login' %}?next=/">Login</a>
-                 {% endif %}
-                 </div>
-             </span>
-        </nav>
-     </div>
+            </a>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                {% block sidenav %}
+                <li class="nav-item">
+                    <a class="nav-link" href="#"> Menu 1 </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"> Menu 2 </a>
+                </li>
+                {% endblock sidenav %}
+            </ul>
+            <span>
+                <div class="text-right m-2">
+                    {% if user.is_authenticated  %}
+                        {{ user.username }}
+                        <a class="btn btn-primary" href="{% url 'logout' %}?next=/">Logout</a>
+                    {% else %}
+                        Not Logged In
+                        <a class="btn btn-primary" href="{% url 'login' %}?next=/">Login</a>
+                    {% endif %}
+                </div>
+            </span>
 
-
-      <div class="container-fluid">
-          {% block content %}
-          <h1> This is Book Exchange System</h1>
-          {% endblock content %}
-      </div>
-      <div class="row align-items-end">
-          <footer class="mt-auto container-fluid text-center">
-              2023 Spring CS3337 Project
-          </footer>
-      </div>
+        </div>
+    </nav>
+    <br>
+    <div class="container-fluid">
+      {% block content %}
+      <h1> This is Book Exchange System</h1>
+      {% endblock content %}
+    </div>
+    <div class="row align-items-end">
+      <footer class="mt-auto container-fluid text-center">
+          2023 Spring CS3337 Project
+      </footer>
+    </div>
 </body>
 </html>
