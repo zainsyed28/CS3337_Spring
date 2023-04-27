@@ -6,6 +6,7 @@ from django.http import HttpResponse
 
 from .models import MainMenu
 from .forms import BookForm
+from .forms import CommentForm
 from django.http import HttpResponseRedirect
 from .models import Book
 from .models import Comment
@@ -76,7 +77,7 @@ class Register(CreateView):
 def book_detail(request, book_id):
     book = Book.objects.get(id=book_id)
     book.pic_path = book.picture.url[14:]
-    comments = Comment.objects.filter(book=book)
+    comments = Comment.objects.filter(book_origin=book)
 
     if request.method == 'POST':
         form = CommentForm(request.POST, request.FILES)
@@ -86,7 +87,7 @@ def book_detail(request, book_id):
                 comment.username = request.user
             except Exception:
                 pass
-            comment.book = book
+            comment.book_origin = book
             comment.save()
     else:
         form = CommentForm()

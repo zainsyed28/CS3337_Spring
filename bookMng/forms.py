@@ -21,4 +21,3 @@ class CommentForm(ModelForm):
         fields = [
             'content',
         ]
-
