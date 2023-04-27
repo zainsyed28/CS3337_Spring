@@ -25,20 +25,20 @@
                   <th scope="col"></th>
                 </tr>
              </thead>
-          <tr>
-              <td>
-                 {{ book.name }}
-              </td>
-              <td>
-                 {{ book.web }}
-              </td>
-              <td>
-                 {{ book.username }}
-              </td>
-              <td>
-                 <img src="{% static book.pic_path %}" height="100"/>
-              </td>
-          </tr>
+              <tr>
+                  <td>
+                     {{ book.name }}
+                  </td>
+                  <td>
+                     {{ book.web }}
+                  </td>
+                  <td>
+                     {{ book.username }}
+                  </td>
+                  <td>
+                     <img src="{% static book.pic_path %}" height="100"/>
+                  </td>
+              </tr>
          </table>
     </div>
 {% endblock content %}
