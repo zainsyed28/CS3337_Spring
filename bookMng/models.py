@@ -29,6 +29,7 @@ class Book(models.Model):
 class Comment(models.Model):
     comment = models.CharField(max_length=200)
     publishdate = models.DateField(auto_now=True)
+    book = models.IntegerField(default=0)
     username = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
