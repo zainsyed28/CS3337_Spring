@@ -20,7 +20,7 @@
                 <tr>
                   <th scope="col">Name</th>
                   <th scope="col">Link</th>
-                  <th scope="col"></th>
+                  <th scope="col">Options</th>
                 </tr>
              </thead>
             {% for book in books %}
@@ -32,7 +32,8 @@
                      {{ book.web }}
                   </td>
                   <td>
-                     <a class = "btn btn-primary" href="book_delete/{{ book.id }}"> DELETE </a>
+                      <a href="{% url 'favorite_add' book.id %}" class="btn btn-primary">Favorite</a>
+                      <a class = "btn btn-primary" href="book_delete/{{ book.id }}"> DELETE </a>
                   </td>
               </tr>
             {% endfor %}

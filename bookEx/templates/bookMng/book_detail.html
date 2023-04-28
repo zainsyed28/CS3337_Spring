@@ -79,17 +79,14 @@
         </table>
     </div>
     <div class="container col-lg-4 col-md-4">
-        <a href="{% url 'favorite' book.id %}" class="btn btn-primary">Favorite this book</a>
-    </div>
-    <div class="container col-lg-4 col-md-4">
         <form action="" enctype="multipart/form-data" method="post">
           <table align="center">
               <div class ="mr-5">
                   {{ form.as_table }}
               </div>
               <tr>
-                  <td>
-                      <input class="form-control" type="submit" value="Submit">
+                  <td colspan="2" align="center">
+                      <input type="submit" value="Submit">
                   </td>
               </tr>
           </table>

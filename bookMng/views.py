@@ -134,12 +134,22 @@ def about_us(request):
                   )
 
 
-def favorite(request, id):
+def favorite_add(request, id):
     book = Book.objects.get(id=id)
     if book.favorites.filter(id=request.user.id).exists():
         book.favorites.remove(request.user)
     else:
         book.favorites.add(request.user)
-    return HttpResponseRedirect(
-        request.META['HTTP_REFERER']
-        )
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+
+def favorites(request):
+    username = request.user
+    books = Book.objects.filter(favorites=request.user)
+    return render(request,
+                  'bookMng/favorite_books.html',
+                  {
+                      'item_list': MainMenu.objects.all(),
+                      'books': books
+                  }
+                  )
