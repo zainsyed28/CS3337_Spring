@@ -153,3 +153,16 @@ def favorites(request):
                       'books': books
                   }
                   )
+
+
+def searchbooks(request):
+    if request.method == "POST":
+        searched = request.POST['searched']
+        book = Book.objects.filter(name__contains=searched)
+        return render(request,
+                      'bookMng/searchbooks.html',
+                      {'searched': searched, 'book': book})
+    else:
+        return render(request,
+                      'bookMng/searchbooks.html',
+                      {'searched':searched, 'book':book})
