@@ -6,9 +6,8 @@
             <h1> You Searched For {{ searched }} </h1>
             <br/>
             {% for book in book %}
-        <a href="book_detail/{{ book.name }}">{{ book.name }}</a><br/>
+                <a href="book_detail/{{ book.id }}">{{ book.name }}</a><br/>
             {% endfor %}
-
         {% else %}
             <h1> Please Search For A Book </h1>
         {% endif %}
