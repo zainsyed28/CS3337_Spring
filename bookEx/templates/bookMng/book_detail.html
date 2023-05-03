@@ -80,6 +80,7 @@
     </div>
     <div class="container col-lg-4 col-md-4">
         <form action="" enctype="multipart/form-data" method="post">
+            {% csrf_token %}
           <table align="center">
               <div class ="mr-5">
                   {{ form.as_table }}
