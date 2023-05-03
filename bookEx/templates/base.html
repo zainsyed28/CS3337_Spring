@@ -16,40 +16,47 @@
 </head>
 <body>
     <nav class=" col navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-            <a class="navbar-brand ml-5" href="/">
-                <div>
-                    <img class="float-left" src="{% static 'logo.jpg' %}" height="36">
-                </div>
-            </a>
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                {% block sidenav %}
+        <a class="navbar-brand ml-5" href="/">
+            <div>
+                <img class="float-left" src="{% static 'logo.jpg' %}" height="36">
+            </div>
+        </a>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="#"></a>
+                    <a class="nav-link" href="{% url 'displaybooks' %}">Display Books</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"></a>
+                    <a class="nav-link" href="{% url 'postbook' %}"> Post Book</a>
                 </li>
-                {% endblock sidenav %}
-            </ul>
-            <span>
-                <div class="text-right m-2">
-                    {% if user.is_authenticated  %}
-                        {{ user.username }}
-                        <a class="btn btn-primary" href="{% url 'logout' %}?next=/">Logout</a>
-                    {% else %}
-                        Not Logged In
-                        <a class="btn btn-primary" href="{% url 'login' %}?next=/">Login</a>
-                    {% endif %}
-                </div>
-            </span>
+                {% if user.is_authenticated  %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'mybooks' %}">My Books</a>
+                    </li>
+                {% else %}
 
-        </div>
+                {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'aboutus' %}">About Us</a>
+                </li>
+                {% if user.is_authenticated  %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'favorite_book' %}">Favorites</a>
+                    </li>
+                {% else %}
+
+                {% endif %}
+        </ul>
+        <span>
+            <div class="text-right m-2">
+                {% if user.is_authenticated  %}
+                    {{ user.username }}
+                    <a class="btn btn-primary" href="{% url 'logout' %}?next=/">Logout</a>
+                {% else %}
+                    Not Logged In
+                    <a class="btn btn-primary" href="{% url 'login' %}?next=/">Login</a>
+                {% endif %}
+            </div>
+        </span>
     </nav>
     <br>
     <div class="container-fluid">
