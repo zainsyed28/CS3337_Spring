@@ -15,6 +15,7 @@
 {% block content %}
     <h1 align="center"> Display Books Page </h1>
     <br>
+   {% if user.is_authenticated  %}
     <div class="container col-lg-4">
         <form class = "form" method="POST" action="{% url 'searchbooks' %}">
             {% csrf_token %}
@@ -46,4 +47,44 @@
             </table>
         </div>
     </div>
+    {% else %}
+    <div class="alert alert-warning alert-dismissible fade show m-2" id ="msg" role="alert">
+        Login to view your favorite books!
+         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+         </button>
+    </div>
+    <div class="container col-lg-4">
+        <form class = "form" method="POST" action="{% url 'searchbooks' %}">
+            {% csrf_token %}
+            <div class = "form-group-inline">
+                <input class="form-control" type="search" placeholder="Search Books" arial-label="Search" name="searched">
+                <button class="btn btn-primary" type="submit">Search</button>
+            </div>
+        </form>
+    </div>
+    <div class = "container col-lg-6">
+        <div class = "row align-items-center">
+            <table class = "table table-bordered table-hover table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">Name</th>
+                      <th scope="col">Link</th>
+                    </tr>
+                </thead>
+                {% for book in books %}
+                    <tr>
+                      <td>
+                         <a href="book_detail/{{ book.id }}"> {{ book.name }} </a>
+                      </td>
+                      <td>
+                         {{ book.web }}
+                      </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    {% endif %}
+
 {% endblock content %}

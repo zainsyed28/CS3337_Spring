@@ -15,6 +15,8 @@ from django.views.generic.edit import CreateView
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 
+from django.contrib import messages
+
 
 def index(request):
     return render(request,
@@ -82,6 +84,7 @@ def book_detail(request, book_id):
     if request.method == 'POST':
         form = CommentForm(request.POST, request.FILES)
         if form.is_valid():
+
             comment = form.save(commit=False)
             try:
                 comment.username = request.user
@@ -89,6 +92,7 @@ def book_detail(request, book_id):
                 pass
             comment.book_origin = book
             comment.save()
+            messages.success(request, "Comment Posted Successfully!")
     else:
         form = CommentForm()
 

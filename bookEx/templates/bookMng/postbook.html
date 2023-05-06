@@ -14,21 +14,32 @@
 
 {% block content %}
    <h1 align="center"> Post book Form </h1>
-   {% if  submitted %}
-        <h1 class = "col-lg-3 col-md-3" align="center"> post book successfully </h1>
-   {% else %}
-        <div class = "container col-lg-3 col-md-3">
-             <form class = "form" action="" enctype="multipart/form-data" method="post" novalidate>
-                  <table class ="table table-bordered" align="center">
-                      {{ form.as_table }}
-                      <tr>
-                          <td colspan="2" align="center">
-                              <input type="submit" value="Submit">
-                          </td>
-                      </tr>
-                  </table>
-                  {% csrf_token %}
-             </form>
+
+   {% if user.is_authenticated  %}
+       {% if  submitted %}
+            <h1 class = "col-lg-3 col-md-3" align="center"> post book successfully </h1>
+       {% else %}
+            <div class = "container col-lg-3 col-md-3">
+                 <form class = "form" action="" enctype="multipart/form-data" method="post" novalidate>
+                      <table class ="table table-bordered" align="center">
+                          {{ form.as_table }}
+                          <tr>
+                              <td colspan="2" align="center">
+                                  <input type="submit" value="Submit">
+                              </td>
+                          </tr>
+                      </table>
+                      {% csrf_token %}
+                 </form>
+            </div>
+       {% endif %}
+    {% else %}
+        <div class="alert alert-warning alert-dismissible fade show m-2" id ="msg" role="alert">
+            Login to post a book!
+             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+             </button>
         </div>
-   {% endif %}
+    {% endif %}
+
 {% endblock content %}
