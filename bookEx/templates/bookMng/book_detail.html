@@ -15,6 +15,16 @@
 {% endblock sidenav %}
 
 {% block content %}
+    {% if user.is_authenticated  %}
+
+    {% else %}
+    <div class="alert alert-warning alert-dismissible fade show m-2" id ="msg" role="alert">
+        Login to post comments
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endif %}
     <h1 align="center"> Book Detail Page </h1>
     <div class="container col-lg-6 col-md-6">
          <table class = "table table-bordered table-light table-striped" align="center" border="2" width="400">
@@ -78,6 +88,8 @@
             {% endif %}
         </table>
     </div>
+
+    {% if user.is_authenticated  %}
     <div class="container col-lg-4 col-md-4">
         <form action="" enctype="multipart/form-data" method="post">
             {% csrf_token %}
@@ -93,4 +105,7 @@
           </table>
         </form>
     </div>
+    {% else %}
+
+    {% endif %}
 {% endblock content %}
